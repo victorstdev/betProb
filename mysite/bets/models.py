@@ -38,8 +38,8 @@ class Bet(models.Model):
             self.lucro = self.valor_aposta * self.odd
         elif self.resultado == 'r':
             self.lucro = self.valor_aposta * -1
-        else:
-            self.lucro = self.valor_aposta
+        elif self.resultado == 'd':
+            self.lucro = 0
         
         self.roi = (self.lucro / self.valor_aposta) * 100
 

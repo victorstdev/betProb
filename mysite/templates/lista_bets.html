@@ -1,25 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Evento</th>
-                <th>Odd</th>
-                <th>Aposta</th>
-                <th>Resultado</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bet in bets %}
-            <tr>
-                <td>{{ bet.data }}</td>
-                <td>{{ bet.evento }}</td>
-                <td>{{ bet.odd }}</td>
-                <td>{{ bet.valor_aposta }}</td>
-                <td>{{ bet.get_resultado_display }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2 class="display-4">Lista de Bets</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Evento</th>
+                    <th>Odd</th>
+                    <th>Aposta</th>
+                    <th>Resultado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for bet in bets %}
+                <tr>
+                    <td>{{ bet.data }}</td>
+                    <td>{{ bet.evento }}</td>
+                    <td>{{ bet.odd }}</td>
+                    <td>{{ bet.valor_aposta }}</td>
+                    <td>{{ bet.get_resultado_display }}</td>
+                    <td><a href="{% url 'editar' bet.id %}">Editar</a></td>
+                    <td><a href="{% url 'excluir' bet.id %}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class='page-item'><a href="?page={{ page_obj.previous_page_number }}" class='page-link'>&laquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
 {% endblock content %}

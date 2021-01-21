@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <span class="form-group">Excluir {{ bet.evento }}?</span>
+        <div class="form-group">
+            <a href="{% url 'lista' %}" class="btn btn-danger">Cancelar</a>
+            <button class="btn btn-primary">Excluir</button>
+        </div>
+    </form>
+{% endblock content %}
