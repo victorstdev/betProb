@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Evento</th>
+                <th>Odd</th>
+                <th>Aposta</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bet in bets %}
+            <tr>
+                <td>{{ bet.data }}</td>
+                <td>{{ bet.evento }}</td>
+                <td>{{ bet.odd }}</td>
+                <td>{{ bet.valor_aposta }}</td>
+                <td>{{ bet.get_resultado_display }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
