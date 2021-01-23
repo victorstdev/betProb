@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}   
+    <h1>Evento: {{ bet.evento }}</h1>
+    
+    <div class="col-lg-6">
+        <h6 class="bg-primary rounded-top p-3 text-light">Data do evento: {{ bet.data }}</h6>
+        <table class="table table-responsive table-bordered">
+            <tbody>
+                <tr>
+                    <th>Mercado</th>
+                    <td>{{ bet.get_mercado_display }}</td>
+                </tr>
+                <tr>
+                    <th>Valor da Aposta</th>
+                    <td>R${{ bet.valor_aposta }}</td>
+                </tr>
+                <tr>
+                    <th>Odd</th>
+                    <td>{{ bet.odd }}</td>
+                </tr>
+                <tr>
+                    <th>Resultado</th>
+                    <td class=
+                        {% if bet.resultado == 'g' %}'bg-success text-light'
+                        {% elif bet.resultado == 'r' %}'bg-danger text-light'
+                        {% else %}'bg-secondary text-light'
+                        {% endif %}>
+                        {{ bet.get_resultado_display }}</td>
+                </tr>
+                <tr>
+                    <th>Lucro</th>
+                    <td class=
+                        {% if bet.lucro > 0 %}'text-success'
+                        {% else %}'text-danger'
+                        {% endif %}>
+                        R${{ bet.lucro }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>ROI(%)</th>
+                    <td>{{bet.roi}}%</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'lista' %}" class="btn btn-primary col-12">Voltar</a>
+    </div>
+
+{% endblock content %}

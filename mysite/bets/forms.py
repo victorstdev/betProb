@@ -12,5 +12,8 @@ class CadastrarBetForm(forms.ModelForm):
         model = Bet
         fields = '__all__'
         widgets = {
-            'data': DateInput()
+            'data': DateInput(),
+            'mercado': forms.Select(attrs={'class':'form-select'}),
+            'resultado': forms.Select(attrs={'class':'form-select'}),
+            'editar_lucro': forms.CheckboxInput()
         }

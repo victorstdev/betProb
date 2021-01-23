@@ -1,9 +1,11 @@
 # betProb
-App pra cálculo de probabilidades em sites de apostas
+App em Django para gerenciamento de apostas
 
 ## To-do List
 
-1. Criar Banco de Dados
-2. Criar lógica pra busca por time
-3. Selecionar mandante e visitante, mostrar as estatísticas de cada
-4. Selecionar qual aposta quer fazer e mostrar as probabilidades de acerto
+1. Criar Banco de Dados - OK
+3. Lista de Apostas - OK
+4. CRUD de Apostas - OK
+5. Dashboard de Análise
+    - Saber como puxar os dados
+    - Como plotar na tela

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <canvas id="myChart" class="col-lg-6"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: []
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [{% for bet in bets %}{{bet.odd}}, {% endfor %}]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+{% endblock content %}

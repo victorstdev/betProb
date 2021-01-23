@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2 class="display-4">Lista de Bets</h2>
-    
+   
     <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-sm text-secondary">
+            <thead class='text-dark'>
                 <tr>
                     <th>Data</th>
                     <th>Evento</th>
-                    <th>Odd</th>
                     <th>Aposta</th>
                     <th>Resultado</th>
                     <th></th>
@@ -19,12 +17,16 @@
             {% for bet in bets %}
                 <tr>
                     <td>{{ bet.data }}</td>
-                    <td>{{ bet.evento }}</td>
-                    <td>{{ bet.odd }}</td>
+                    <td><a href="{% url 'visualizar' bet.id %}" class='text-decoration-none link-primary'>{{ bet.evento }}</a></td>
                     <td>{{ bet.valor_aposta }}</td>
-                    <td>{{ bet.get_resultado_display }}</td>
-                    <td><a href="{% url 'editar' bet.id %}">Editar</a></td>
-                    <td><a href="{% url 'excluir' bet.id %}">Excluir</a></td>
+                    <td class=
+                        {% if bet.lucro > 0 %}'text-success'
+                        {% else %}'text-danger'
+                        {% endif %}>
+                        {{ bet.lucro }}
+                    </td>
+                    <td><a href="{% url 'editar' bet.id %}"  class='text-info'><span class="material-icons">edit</span></a></td>
+                    <td><a href="{% url 'excluir' bet.id %}" class='text-danger'><span class="material-icons">delete_forever</span></a></td>
                 </tr>
             {% endfor %}
             </tbody>
