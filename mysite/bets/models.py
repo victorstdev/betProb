@@ -15,7 +15,8 @@ RESULTADOS = (
     ('g', 'Green'),
     ('r', 'Red'),
     ('d', 'Devolvida'),
-    ('e', 'Encerrada')
+    ('e', 'Encerrada'),
+    ('p', 'Pendente')
 )
 
 
@@ -35,6 +36,7 @@ class Bet(models.Model):
         return self.evento
     
     def save(self, *args, **kwargs):
+
         if self.editar_lucro == False:
             if self.resultado == 'g':
                 total = self.valor_aposta * self.odd

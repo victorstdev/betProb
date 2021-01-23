@@ -14,7 +14,7 @@ class BetListView(ListView):
     model = Bet
     template_name = "lista_bets.html"
     context_object_name = 'bets'
-    paginate_by = 10
+    paginate_by = 10    
 
 class BetAnaliseListView(ListView):
     model = Bet

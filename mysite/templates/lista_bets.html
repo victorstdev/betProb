@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-   
     <div class="table-responsive">
         <table class="table table-sm text-secondary">
             <thead class='text-dark'>
@@ -17,7 +16,11 @@
             {% for bet in bets %}
                 <tr>
                     <td>{{ bet.data }}</td>
-                    <td><a href="{% url 'visualizar' bet.id %}" class='text-decoration-none link-primary'>{{ bet.evento }}</a></td>
+                    <td>
+                        <a href="{% url 'visualizar' bet.id %}" class='text-decoration-none'>
+                            <span class={% if bet.resultado == 'p' %}'fw-bold'{% endif %}>{{ bet.evento }} {% if bet.resultado == 'p' %}<span class="badge bg-secondary rounded-pill">pendente</span>{% endif %}</span>
+                        </a>
+                    </td>
                     <td>{{ bet.valor_aposta }}</td>
                     <td class=
                         {% if bet.lucro > 0 %}'text-success'
