@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
 # Create your models here.
@@ -19,9 +20,7 @@ RESULTADOS = (
     ('p', 'Pendente')
 )
 
-
 class Bet(models.Model):
-
     data = models.DateField("Data do Evento", auto_now=False)
     evento = models.CharField("Nome do Evento", max_length=50)
     mercado = models.CharField("Mercado", max_length=10, choices=MERCADOS, default='ml')
